@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic") // build-logic module
     repositories {
         google {
             content {
@@ -19,10 +20,10 @@ dependencyResolutionManagement {
     }
 }
 
+rootProject.name = "Runrun"
 // Access modules in type-safe manner
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "Runrun"
 include(":app")
 include(":auth:data")
 include(":auth:presentation")
