@@ -19,7 +19,10 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Run"
+// Access modules in type-safe manner
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "Runrun"
 include(":app")
 include(":auth:data")
 include(":auth:presentation")
