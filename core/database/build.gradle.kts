@@ -35,4 +35,6 @@ android {
 dependencies {
     // Timber
     implementation(libs.org.mongodb.bson)
+    implementation(projects.core.domain)
+
 }
