@@ -120,3 +120,4 @@ androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin" }
 
 runrun-android-application = { id = "runrun.android.application", version = "unspecified" }
+runrun-android-application-compose = { id = "runrun.android.application.compose", version = "unspecified" }
