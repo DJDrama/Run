@@ -125,6 +125,7 @@ runrun-android-library = { id = "runrun.android.library", version = "unspecified
 runrun-android-library-compose = { id = "runrun.android.library.compose", version = "unspecified" }
 runrun-android-feature-ui = { id = "runrun.android.feature.ui", version = "unspecified" }
 runrun-android-room = { id = "runrun.android.room", version = "unspecified" }
+runrun-jvm-library = { id = "runrun.jvm.library", version = "unspecified" }
 
 [bundles]
 compose = [
