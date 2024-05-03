@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.runrun.android.library)
+    alias(libs.plugins.runrun.jvm.ktor)
 }
 
 android {

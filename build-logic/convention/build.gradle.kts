@@ -43,5 +43,9 @@ gradlePlugin {
             id = "runrun.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
+        register("jvmKtor"){
+            id = "runrun.jvm.ktor"
+            implementationClass = "JvmKtorConventionPlugin"
+        }
     }
 }

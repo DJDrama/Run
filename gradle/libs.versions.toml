@@ -126,6 +126,7 @@ runrun-android-library-compose = { id = "runrun.android.library.compose", versio
 runrun-android-feature-ui = { id = "runrun.android.feature.ui", version = "unspecified" }
 runrun-android-room = { id = "runrun.android.room", version = "unspecified" }
 runrun-jvm-library = { id = "runrun.jvm.library", version = "unspecified" }
+runrun-jvm-ktor = { id = "runrun.jvm.ktor", version = "unspecified" }
 
 [bundles]
 compose = [
@@ -143,3 +144,11 @@ compose-debug = [
 ]
 koin = ["koin-core", "koin-android", "koin-android-workmanager"]
 koin-compose = ["koin-core", "koin-android", "koin-android-workmanager", "koin-androidx-compose"]
+ktor = [
+    "ktor-client-auth",
+    "ktor-client-cio",
+    "ktor-client-content-negotiation",
+    "ktor-client-core",
+    "ktor-client-logging",
+    "ktor-serialization-kotlinx-json"
+]
