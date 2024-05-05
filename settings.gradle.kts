@@ -20,6 +20,8 @@ dependencyResolutionManagement {
     }
 }
 
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
+
 rootProject.name = "Runrun"
 // Access modules in type-safe manner
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
