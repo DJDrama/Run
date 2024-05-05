@@ -3,6 +3,7 @@ package com.dj.www
 import android.app.Application
 import com.dj.auth.data.di.authDataModule
 import com.dj.auth.presentation.di.authViewModelModule
+import com.dj.core.data.di.coreDataModule
 import com.dj.www.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -24,7 +25,8 @@ class RunrunApp : Application() {
             modules(
                 authDataModule,
                 authViewModelModule,
-                appModule
+                appModule,
+                coreDataModule
             )
         }
     }
