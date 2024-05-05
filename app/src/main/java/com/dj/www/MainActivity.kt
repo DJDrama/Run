@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.dj.core.presentation.designsystem.AnalyticsIcon
 import com.dj.core.presentation.designsystem.RunTheme
 
@@ -24,7 +25,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Icon(imageVector = AnalyticsIcon, contentDescription = null)
+                    val navController = rememberNavController()
+                    NavigationRoot(navController = navController)
                 }
             }
         }
