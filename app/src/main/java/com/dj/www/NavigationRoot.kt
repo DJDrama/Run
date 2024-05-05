@@ -20,7 +20,9 @@ fun NavigationRoot(
         startDestination = "auth"
     ) {
         authGraph(navController = navController)
+        runGraph(navController = navController)
     }
+
 }
 
 private fun NavGraphBuilder.authGraph(navController: NavHostController) {
@@ -49,13 +51,15 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
                 onSuccessfulRegistration = { navController.navigate("login") },
             )
         }
-        composable("login"){
+        composable("login") {
             LoginScreenRoot(
-                onLoginSuccess = { navController.navigate("run") {
-                    popUpTo("auth"){
-                        inclusive=true
+                onLoginSuccess = {
+                    navController.navigate("run") {
+                        popUpTo("auth") {
+                            inclusive = true
+                        }
                     }
-                } },
+                },
                 onSignUpClick = {
                     navController.navigate("register") {
                         popUpTo("login") {
@@ -67,5 +71,17 @@ private fun NavGraphBuilder.authGraph(navController: NavHostController) {
                 }
             )
         }
+    }
+}
+
+private fun NavGraphBuilder.runGraph(navController: NavHostController) {
+    navigation(
+        startDestination = "run_overview",
+        route = "run"
+    ) {
+        composable("run_overview") {
+            Text(text = "Run overview!")
+        }
+
     }
 }
