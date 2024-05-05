@@ -76,7 +76,13 @@ fun RegisterScreenRoot(
     }
     RegisterScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when (action) {
+                RegisterAction.OnLoginClick -> onSignInClick()
+                else -> Unit
+            }
+            viewModel.onAction(action = action)
+        }
     )
 }
 
@@ -92,7 +98,7 @@ private fun RegisterScreen(
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)
                 .padding(vertical = 32.dp)
-                .padding(top = 16.dp)
+                .padding(top = 32.dp)
         ) {
             Text(
                 text = stringResource(id = R.string.create_account),
@@ -102,7 +108,7 @@ private fun RegisterScreen(
                 withStyle(
                     style = SpanStyle(
                         fontFamily = Poppins,
-                        color = RuniqueGray
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 ) {
                     append(text = stringResource(id = R.string.already_have_an_account) + " ")
@@ -127,7 +133,7 @@ private fun RegisterScreen(
                     start = offset,
                     end = offset
                 ).firstOrNull()?.let {
-                    onAction(RegisterAction.OnRegisterClick)
+                    onAction(RegisterAction.OnLoginClick)
                 }
             }
             Spacer(modifier = Modifier.height(48.dp))
