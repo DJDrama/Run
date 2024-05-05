@@ -24,9 +24,11 @@ constructor(
     init {
         state.email.textAsFlow()
             .onEach { email ->
+                val isValidEmail = userDataValidator.isValidEmail(email = email.toString())
                 state =
                     state.copy(
-                        isEmailValid = userDataValidator.isValidEmail(email = email.toString())
+                        isEmailValid = isValidEmail,
+                        canRegister = isValidEmail && state.passwordValidationState.isValidPassword && !state.isRegistering
                     )
             }
             .catch { }
@@ -34,8 +36,10 @@ constructor(
 
         state.password.textAsFlow()
             .onEach { password ->
+                val passwordValidationState = userDataValidator.validatePassword(password = password.toString())
                 state = state.copy(
-                    passwordValidationState = userDataValidator.validatePassword(password = password.toString())
+                    passwordValidationState = passwordValidationState,
+                    canRegister = state.isEmailValid && state.passwordValidationState.isValidPassword && !state.isRegistering
                 )
             }
             .catch { }

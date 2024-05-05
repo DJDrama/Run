@@ -44,12 +44,13 @@ import com.dj.core.presentation.designsystem.components.GradientBackground
 import com.dj.core.presentation.designsystem.components.RunActionButton
 import com.dj.core.presentation.designsystem.components.RunrunPasswordTextField
 import com.dj.core.presentation.designsystem.components.RunrunTextField
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun RegisterScreenRoot(
     onSignInClick: () -> Unit,
     onSuccessfulRegistration: () -> Unit,
-    viewModel: RegisterViewModel
+    viewModel: RegisterViewModel = koinViewModel()
 ) {
     RegisterScreen(
         state = viewModel.state,

@@ -44,6 +44,9 @@ dependencies {
     // Crypto
     implementation(libs.androidx.security.crypto.ktx)
 
+    // Koin
+    implementation(libs.bundles.koin)
+
     // For dynamic feature
     api(libs.core)
 
