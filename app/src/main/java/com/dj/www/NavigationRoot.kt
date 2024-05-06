@@ -1,6 +1,5 @@
 package com.dj.www
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -10,6 +9,7 @@ import androidx.navigation.compose.navigation
 import com.dj.auth.presentation.intro.IntroScreenRoot
 import com.dj.auth.presentation.login.LoginScreenRoot
 import com.dj.auth.presentation.register.RegisterScreenRoot
+import com.dj.run.presentation.active_run.ActiveRunScreenRoot
 import com.dj.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -82,7 +82,13 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         route = "run"
     ) {
         composable("run_overview") {
-            RunOverviewScreenRoot()
+            RunOverviewScreenRoot {
+                navController.navigate("active_run")
+            }
+        }
+
+        composable("active_run"){
+            ActiveRunScreenRoot()
         }
 
     }
