@@ -5,7 +5,6 @@ package com.dj.run.presentation.active_run
 import android.Manifest
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
