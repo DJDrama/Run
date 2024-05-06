@@ -8,10 +8,10 @@ import kotlin.time.Duration.Companion.milliseconds
 
 object Timer {
     fun timeAndEmit(): Flow<Duration> = flow {
-        var lastEmitTime = System.nanoTime() // System.currentTimeMillis()
+        var lastEmitTime = System.currentTimeMillis()
         while(true){
             delay(200L)
-            val currentTime = System.nanoTime() // System.currentTimeMillis()
+            val currentTime =  System.currentTimeMillis()
             val elapsedTime = currentTime - lastEmitTime
             emit(elapsedTime.milliseconds)
             lastEmitTime = currentTime
