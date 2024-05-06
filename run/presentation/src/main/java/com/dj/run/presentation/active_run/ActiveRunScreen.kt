@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.dj.core.presentation.designsystem.RunTheme
 import com.dj.core.presentation.designsystem.StartIcon
 import com.dj.core.presentation.designsystem.StopIcon
+import com.dj.core.presentation.designsystem.components.RunActionButton
 import com.dj.core.presentation.designsystem.components.RunOutlinedActionButton
 import com.dj.core.presentation.designsystem.components.RunrunDialog
 import com.dj.core.presentation.designsystem.components.RunrunFloatingActionButton
@@ -105,7 +106,7 @@ private fun ActiveRunScreen(
             )
         )
 
-        if(!showLocationRationale && !showNotificationRationale){
+        if (!showLocationRationale && !showNotificationRationale) {
             permissionLauncher.requestRunrunPermissions(context)
         }
     }
@@ -149,7 +150,7 @@ private fun ActiveRunScreen(
             TrackerMap(
                 modifier = Modifier.fillMaxSize(),
                 isRunFinished = state.isRunFinished,
-                currentLocation = state.currentLocation ,
+                currentLocation = state.currentLocation,
                 locations = state.runData.locations,
                 onSnapshot = {},
             )
@@ -162,6 +163,29 @@ private fun ActiveRunScreen(
                 runData = state.runData
             )
         }
+    }
+    if (!state.shouldTrack && state.hasStartedRunning) {
+        RunrunDialog(
+            title = stringResource(id = R.string.running_is_paused),
+            onDismiss = {
+                onAction(ActiveRunAction.OnResumeRunClick)
+            },
+            description = stringResource(id = R.string.resume_or_finish_run),
+            primaryButton = {
+                RunActionButton(modifier = Modifier.weight(1f), text = stringResource(id = R.string.resume), isLoading = false) {
+                    onAction(ActiveRunAction.OnResumeRunClick)
+                }
+            },
+            secondaryButton = {
+                RunOutlinedActionButton(
+                    modifier = Modifier.weight(1f),
+                    text = stringResource(id = R.string.finish),
+                    isLoading = state.isSavingRun
+                ) {
+                    onAction(ActiveRunAction.OnFinishRunClick)
+                }
+            }
+        )
     }
     if (state.showLocationRationale || state.showNotificationRationale) {
         RunrunDialog(
