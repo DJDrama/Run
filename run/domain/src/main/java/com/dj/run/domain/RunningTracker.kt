@@ -50,6 +50,19 @@ class RunningTracker(
 
     init {
         isTracking
+            .onEach { isTracking ->
+                if (!isTracking) {
+                    val newList: List<List<LocationTimestamp>> = buildList {
+                        addAll(runData.value.locations)
+                        add(emptyList())
+                    }
+                    _runData.update {
+                        it.copy(
+                            locations = newList
+                        )
+                    }
+                }
+            }
             .flatMapLatest { isTracking ->
                 if (isTracking) {
                     Timer.timeAndEmit()
@@ -79,13 +92,14 @@ class RunningTracker(
                 } else listOf(location)
 
                 val newLocationsList = currentLocations.replaceLast(lastLocationsList)
-                val distanceMeters = LocationDataCalculator.getTotalDistanceMeters(locations = newLocationsList)
+                val distanceMeters =
+                    LocationDataCalculator.getTotalDistanceMeters(locations = newLocationsList)
 
                 val distanceKm = distanceMeters / 1000.0
                 val currentDuration = location.durationTimestamp
-                val avgSecondsPerKm = if(distanceKm == 0.0) {
+                val avgSecondsPerKm = if (distanceKm == 0.0) {
                     0
-                }else{
+                } else {
                     (currentDuration.inWholeSeconds / distanceKm).roundToInt()
                 }
                 _runData.update {
