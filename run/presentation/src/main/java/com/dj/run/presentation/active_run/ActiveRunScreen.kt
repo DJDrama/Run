@@ -35,6 +35,7 @@ import com.dj.core.presentation.designsystem.components.RunrunToolbar
 import com.dj.run.presentation.R
 import com.dj.run.presentation.active_run.components.RunDataCard
 import com.dj.run.presentation.active_run.maps.TrackerMap
+import com.dj.run.presentation.active_run.service.ActiveRunService
 import com.dj.run.presentation.util.hasLocationPermission
 import com.dj.run.presentation.util.hasNotificationPermission
 import com.dj.run.presentation.util.shouldShowLocationPermissionRationale
@@ -43,10 +44,12 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ActiveRunScreenRoot(
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     viewModel: ActiveRunViewModel = koinViewModel()
 ) {
     ActiveRunScreen(
         state = viewModel.state,
+        onServiceToggle = onServiceToggle,
         onAction = viewModel::onAction
     )
 }
@@ -54,6 +57,7 @@ fun ActiveRunScreenRoot(
 @Composable
 private fun ActiveRunScreen(
     state: ActiveRunState,
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     onAction: (ActiveRunAction) -> Unit
 ) {
     val context = LocalContext.current
@@ -108,6 +112,16 @@ private fun ActiveRunScreen(
 
         if (!showLocationRationale && !showNotificationRationale) {
             permissionLauncher.requestRunrunPermissions(context)
+        }
+    }
+    LaunchedEffect(key1 = state.isRunFinished) {
+        if(state.isRunFinished){
+            onServiceToggle(false)
+        }
+    }
+    LaunchedEffect(key1 = state.shouldTrack) {
+        if (context.hasLocationPermission() && state.shouldTrack && !ActiveRunService.isServiceActive) {
+            onServiceToggle(true)
         }
     }
 
@@ -172,7 +186,11 @@ private fun ActiveRunScreen(
             },
             description = stringResource(id = R.string.resume_or_finish_run),
             primaryButton = {
-                RunActionButton(modifier = Modifier.weight(1f), text = stringResource(id = R.string.resume), isLoading = false) {
+                RunActionButton(
+                    modifier = Modifier.weight(1f),
+                    text = stringResource(id = R.string.resume),
+                    isLoading = false
+                ) {
                     onAction(ActiveRunAction.OnResumeRunClick)
                 }
             },
@@ -248,7 +266,10 @@ private fun ActivityResultLauncher<Array<String>>.requestRunrunPermissions(
 @Preview
 private fun ActiveRunScreenPreview() {
     RunTheme {
-        ActiveRunScreen(state = ActiveRunState()) {
+        ActiveRunScreen(
+            onServiceToggle = { },
+            state = ActiveRunState()
+        ) {
 
         }
     }
