@@ -1,11 +1,14 @@
 package com.dj.run.presentation.di
 
+import com.dj.run.domain.RunningTracker
 import com.dj.run.presentation.active_run.ActiveRunViewModel
 import com.dj.run.presentation.run_overview.RunOverviewViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
-val runViewModelModule = module {
+val runPresentationModule = module {
+    singleOf(::RunningTracker)
     viewModelOf(::RunOverviewViewModel)
     viewModelOf(::ActiveRunViewModel)
 }
