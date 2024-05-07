@@ -29,6 +29,14 @@ fun Duration.toFormattedPace(distanceKm: Double): String {
     return "$avgPaceMinutes:$avgPaceSeconds / km"
 }
 
+fun Double.toFormattedKmh(): String {
+    return "${this.roundToDecimals(1)} km/h"
+}
+
+fun Int.toFormattedMeters(): String{
+    return "$this m"
+}
+
 // 5.678, 1 -> 5.7
 private fun Double.roundToDecimals(decimalCount: Int): Double {
     val factor = 10f.pow(n = decimalCount)
