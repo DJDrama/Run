@@ -6,6 +6,7 @@ import com.dj.auth.presentation.di.authViewModelModule
 import com.dj.core.data.di.coreDataModule
 import com.dj.core.database.di.databaseModule
 import com.dj.run.location.di.locationModule
+import com.dj.run.network.di.networkModule
 import com.dj.run.presentation.di.runPresentationModule
 import com.dj.www.di.appModule
 import kotlinx.coroutines.CoroutineScope
@@ -34,7 +35,8 @@ class RunrunApp : Application() {
                 coreDataModule,
                 runPresentationModule,
                 locationModule,
-                databaseModule
+                databaseModule,
+                networkModule
             )
         }
     }
