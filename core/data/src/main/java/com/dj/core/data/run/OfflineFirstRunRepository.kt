@@ -53,7 +53,7 @@ class OfflineFirstRunRepository(
         )
         return when (remoteResult) {
             is Result.Error -> {
-                Result.Success(Unit) // TODO
+                Result.Success(Unit)
             }
 
             is Result.Success -> {
