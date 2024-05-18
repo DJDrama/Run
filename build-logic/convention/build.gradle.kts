@@ -39,6 +39,10 @@ gradlePlugin {
             id = "runrun.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+        register("androidDynamicFeature") {
+            id = "runrun.android.dynamic.feature"
+            implementationClass = "AndroidDynamicFeatureConventionPlugin"
+        }
         register("jvmLibrary"){
             id = "runrun.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
