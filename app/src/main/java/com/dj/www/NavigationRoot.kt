@@ -85,9 +85,15 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         route = "run"
     ) {
         composable("run_overview") {
-            RunOverviewScreenRoot {
+            RunOverviewScreenRoot(onLogoutClick = {
+                navController.navigate("auth") {
+                    popUpTo("run") {
+                        inclusive = true
+                    }
+                }
+            }, onStartRunClick = {
                 navController.navigate("active_run")
-            }
+            })
         }
 
         composable(
