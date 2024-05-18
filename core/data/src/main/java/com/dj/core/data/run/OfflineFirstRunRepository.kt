@@ -8,6 +8,7 @@ import com.dj.core.domain.run.RemoteRunDataSource
 import com.dj.core.domain.run.Run
 import com.dj.core.domain.run.RunId
 import com.dj.core.domain.run.RunRepository
+import com.dj.core.domain.run.SyncRunScheduler
 import com.dj.core.domain.util.DataError
 import com.dj.core.domain.util.EmptyResult
 import com.dj.core.domain.util.Result
@@ -24,7 +25,8 @@ class OfflineFirstRunRepository(
     private val remoteRunDataSource: RemoteRunDataSource,
     private val applicationScope: CoroutineScope,
     private val runPendingSyncDao: RunPendingSyncDao,
-    private val sessionStorage: SessionStorage
+    private val sessionStorage: SessionStorage,
+    private val syncRunScheduler: SyncRunScheduler
 ) : RunRepository {
     override fun getRuns(): Flow<List<Run>> {
         return localRunDataSource.getRuns()
@@ -53,6 +55,14 @@ class OfflineFirstRunRepository(
         )
         return when (remoteResult) {
             is Result.Error -> {
+                applicationScope.launch {
+                    syncRunScheduler.scheduleSync(
+                        type = SyncRunScheduler.SyncType.CreateRun(
+                            run = runWithId,
+                            mapPictureBytes = mapPicture
+                        )
+                    )
+                }.join()
                 Result.Success(Unit)
             }
 
@@ -71,7 +81,7 @@ class OfflineFirstRunRepository(
         // and then deleted in offline-mode as well
         // in that case, we don't need to sync anything.
         val isPendingSync = runPendingSyncDao.getRunPendingSyncEntity(runId = id) != null
-        if(isPendingSync){
+        if (isPendingSync) {
             runPendingSyncDao.deleteRunPendingSyncEntity(runId = id)
             return
         }
@@ -79,6 +89,14 @@ class OfflineFirstRunRepository(
         val remoteResult = applicationScope.async {
             remoteRunDataSource.deleteRun(id = id)
         }.await()
+
+        if (remoteResult is Result.Error) {
+            applicationScope.launch {
+                syncRunScheduler.scheduleSync(
+                    type = SyncRunScheduler.SyncType.DeleteRun(runId = id)
+                )
+            }.join()
+        }
     }
 
     override suspend fun syncPendingRuns() {
@@ -100,7 +118,10 @@ class OfflineFirstRunRepository(
                             run = run,
                             mapPicture = it.mapPictureBytes
                         )) {
-                            is Result.Error -> Unit // will retry later
+                            is Result.Error -> {
+                                Unit // will retry later
+                            }
+
                             is Result.Success -> {
                                 // success so we can remove from our local db
                                 applicationScope.launch {
@@ -129,10 +150,10 @@ class OfflineFirstRunRepository(
                     }
                 }
 
-            createdJobs.forEach{
+            createdJobs.forEach {
                 it.join()
             }
-            deletedJobs.forEach{
+            deletedJobs.forEach {
                 it.join()
             }
         }
