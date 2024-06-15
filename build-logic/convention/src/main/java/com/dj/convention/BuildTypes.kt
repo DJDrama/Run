@@ -69,6 +69,7 @@ internal fun Project.configureBuildTypes(
                                 commonExtension = commonExtension,
                                 apiKey = apiKey
                             )
+                            isMinifyEnabled = false
                         }
                     }
                 }
@@ -88,7 +89,8 @@ private fun BuildType.configureReleaseBuildType(
     buildConfigField("String", "API_KEY", "\"$apiKey\"")
     buildConfigField("String", "BASE_URL", "\"https://runique.pl-coding.com:8080\"")
 
-    isMinifyEnabled = true
+    // FIXME
+    isMinifyEnabled = false
     proguardFiles(
         commonExtension.getDefaultProguardFile("proguard-android-optimize.txt"),
         "proguard-rules.pro"

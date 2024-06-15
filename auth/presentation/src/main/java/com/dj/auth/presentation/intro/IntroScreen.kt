@@ -111,6 +111,12 @@ private fun RunLogoVertical(
 }
 
 @Preview
+@Preview(
+    name = "Tablet",
+    device = "spec:id=reference_tablet,shape=Normal,width=800,height=1280,unit=dp,dpi=240",
+    showSystemUi = true
+)
+
 @Composable
 private fun IntroScreenPreview() {
     RunTheme {
