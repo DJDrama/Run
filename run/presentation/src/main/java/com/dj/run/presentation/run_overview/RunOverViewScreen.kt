@@ -38,11 +38,13 @@ fun RunOverviewScreenRoot(
     viewModel: RunOverviewViewModel = koinViewModel(),
     onStartRunClick: () -> Unit,
     onLogoutClick: () -> Unit,
+    onAnalyticsClick: () -> Unit,
 ) {
     RunOverviewScreen(
         state = viewModel.state
     ) {
         when (it) {
+            RunOverviewAction.OnAnalyticsClick -> onAnalyticsClick()
             RunOverviewAction.OnStartClick -> onStartRunClick()
             RunOverviewAction.OnLogoutClick -> onLogoutClick()
             else -> Unit

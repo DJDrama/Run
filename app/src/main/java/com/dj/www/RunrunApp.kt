@@ -1,6 +1,7 @@
 package com.dj.www
 
 import android.app.Application
+import android.content.Context
 import com.dj.auth.data.di.authDataModule
 import com.dj.auth.presentation.di.authViewModelModule
 import com.dj.core.data.di.coreDataModule
@@ -10,6 +11,7 @@ import com.dj.run.location.di.locationModule
 import com.dj.run.network.di.networkModule
 import com.dj.run.presentation.di.runPresentationModule
 import com.dj.www.di.appModule
+import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
@@ -43,5 +45,10 @@ class RunrunApp : Application() {
                 runDataModule,
             )
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        SplitCompat.install(this)
     }
 }
