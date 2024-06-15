@@ -40,7 +40,7 @@ class RunrunApp : Application() {
                 locationModule,
                 databaseModule,
                 networkModule,
-                runDataModule
+                runDataModule,
             )
         }
     }

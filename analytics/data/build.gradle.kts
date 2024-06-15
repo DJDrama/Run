@@ -7,6 +7,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.bundles.koin)
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(projects.core.database)
     implementation(projects.core.domain)
