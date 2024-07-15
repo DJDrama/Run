@@ -21,14 +21,14 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 20.sp,
-        color = RuniqueGray
+        color = RunGray
     ),
     bodyMedium = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 22.sp,
-        color = RuniqueGray
+        color = RunGray
     ),
     bodyLarge = TextStyle(
         fontFamily = Poppins,
@@ -47,6 +47,6 @@ val Typography = Typography(
         fontFamily = Poppins,
         fontWeight = FontWeight.SemiBold,
         lineHeight = 24.sp,
-        color = RuniqueWhite
+        color = RunWhite
     )
 )

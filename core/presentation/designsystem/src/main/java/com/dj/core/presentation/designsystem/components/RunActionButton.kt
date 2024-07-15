@@ -20,8 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.dj.core.presentation.designsystem.RuniqueBlack
-import com.dj.core.presentation.designsystem.RuniqueGray
+import com.dj.core.presentation.designsystem.RunBlack
+import com.dj.core.presentation.designsystem.RunGray
 
 @Composable
 fun RunActionButton(
@@ -37,8 +37,8 @@ fun RunActionButton(
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
-            disabledContainerColor = RuniqueGray,
-            disabledContentColor = RuniqueBlack
+            disabledContainerColor = RunGray,
+            disabledContentColor = RunBlack
         ),
         shape = RoundedCornerShape(size = 100f),
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Min)

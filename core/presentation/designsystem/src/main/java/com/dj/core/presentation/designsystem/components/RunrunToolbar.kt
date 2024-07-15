@@ -39,7 +39,7 @@ import com.dj.core.presentation.designsystem.LogoIcon
 import com.dj.core.presentation.designsystem.Poppins
 import com.dj.core.presentation.designsystem.R
 import com.dj.core.presentation.designsystem.RunTheme
-import com.dj.core.presentation.designsystem.RuniqueGreen
+import com.dj.core.presentation.designsystem.RunGreen
 import com.dj.core.presentation.designsystem.components.util.DropDownItem
 
 @Composable
@@ -139,7 +139,7 @@ private fun RunrunToolbarPreview() {
             Icon(
                 imageVector = LogoIcon,
                 contentDescription = null,
-                tint = RuniqueGreen,
+                tint = RunGreen,
                 modifier = Modifier.size(36.dp)
             )
         }
