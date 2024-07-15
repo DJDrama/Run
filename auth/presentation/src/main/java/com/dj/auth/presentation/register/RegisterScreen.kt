@@ -40,9 +40,8 @@ import com.dj.core.presentation.designsystem.CrossIcon
 import com.dj.core.presentation.designsystem.EmailIcon
 import com.dj.core.presentation.designsystem.Poppins
 import com.dj.core.presentation.designsystem.RunTheme
-import com.dj.core.presentation.designsystem.RuniqueDarkRed
-import com.dj.core.presentation.designsystem.RuniqueGray
-import com.dj.core.presentation.designsystem.RuniqueGreen
+import com.dj.core.presentation.designsystem.RunDarkRed
+import com.dj.core.presentation.designsystem.RunGreen
 import com.dj.core.presentation.designsystem.components.GradientBackground
 import com.dj.core.presentation.designsystem.components.RunActionButton
 import com.dj.core.presentation.designsystem.components.RunrunPasswordTextField
@@ -217,9 +216,9 @@ fun PasswordRequirement(
                 CrossIcon
             }, contentDescription = null,
             tint = if (isValid) {
-                RuniqueGreen
+                RunGreen
             } else {
-                RuniqueDarkRed
+                RunDarkRed
             }
         )
         Spacer(modifier = Modifier.width(16.dp))

@@ -1,43 +1,51 @@
 [versions]
 agp = "8.3.2"
-androidTools = "31.4.0"
-core = "1.10.3"
+androidTools = "31.5.1"
 playCore = "1.10.3"
 coreSplashscreen = "1.0.1"
 coilCompose = "2.6.0"
 composeCompiler = "1.5.13"
 desugar_jdk_libs = "2.0.4"
-kotlin = "1.9.22"
+kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
 activityCompose = "1.9.0"
 ktor = "2.3.8"
 ktorClientLogging = "2.3.8"
 ktorServerCallLogging = "2.3.7"
 koin = "3.5.3"
-lifecycleRuntimeKtx = "2.7.0"
-composeBom = "2024.05.00"
-materialIconsExtended = "1.6.7"
+lifecycleRuntimeKtx = "2.8.3"
+composeBom = "2024.06.00"
+materialIconsExtended = "1.6.8"
 navigationCompose = "2.7.7"
 securityCryptoKtx = "1.1.0-alpha06"
 timber = "5.0.1"
-ksp = "1.9.23-1.0.20"
+ksp = "2.0.0-1.0.22"
 room = "2.6.1"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
 material = "1.12.0"
 org-jetbrains-kotlin-jvm = "1.9.23"
 maps = "4.3.3"
 coroutines = "1.8.0"
-gmsLocation = "21.2.0"
+gmsLocation = "21.3.0"
 mapsUtils = "5.0.0"
 bson = "4.11.1"
 work = "2.9.0"
 kotlinx-serialization = "1.6.3"
 secretsPlugin = "2.0.1"
-playServicesMaps = "18.2.0"
-annotation = "1.7.1"
+playServicesMaps = "19.0.0"
+annotation = "1.8.0"
+
+junit5 = "5.10.1"
+junit5-plugin = "1.10.0.0"
+junit5-compose = "1.4.0"
+mockk = "1.13.11"
+assertk = "0.28.1"
+turbine = "0.7.0"
+composeUiTestManifest = "1.6.8"
+coroutines-test = "1.8.1"
 
 # Project versions
 projectApplicationId = "com.dj.www"
@@ -74,7 +82,7 @@ androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graph
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeUiTestManifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 koin-android-workmanager = { group = "io.insert-koin", name = "koin-androidx-workmanager", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
@@ -100,6 +108,18 @@ play-services-maps = { group = "com.google.android.gms", name = "play-services-m
 google-maps-android-utils-ktx = { module = "com.google.maps.android:maps-utils-ktx", version.ref = "mapsUtils" }
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 
+# Test Dependencies
+junit5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
+junit5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
+junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5" }
+junit5-android-test-compose = { module = "de.mannodermaus.junit5:android-test-compose", version.ref = "junit5-compose" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertk" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
+
+
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
@@ -118,6 +138,8 @@ room = { id = "androidx.room", version.ref = "room" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin" }
 
 runrun-android-application = { id = "runrun.android.application", version = "unspecified" }
 runrun-android-application-compose = { id = "runrun.android.application.compose", version = "unspecified" }
@@ -128,6 +150,8 @@ runrun-android-room = { id = "runrun.android.room", version = "unspecified" }
 runrun-android-dynamic-feature = { id = "runrun.android.dynamic.feature", version = "unspecified" }
 runrun-jvm-library = { id = "runrun.jvm.library", version = "unspecified" }
 runrun-jvm-ktor = { id = "runrun.jvm.ktor", version = "unspecified" }
+runrun-jvm-junit5 = { id = "runrun.jvm.junit5", version = "unspecified" }
+runrun-android-junit5 = { id = "runrun.android.junit5", version = "unspecified" }
 
 [bundles]
 compose = [
